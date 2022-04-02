@@ -1,28 +1,18 @@
 package ru.isaev.springcource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Component("musicPlayer")
 public class MusicPlayer {
-    private Music music;
+    private List<Music> musicList;
     private int volume;
 
     private String name;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music,
-                       @Value("${musicPlayer.volume}") int volume,
-                       @Value("${musicPlayer.name}") String name) {
-        this.music = music;
-        this.volume = volume;
-        this.name = name;
+    public MusicPlayer(List<Music> music) {
+        this.musicList = music;
     }
 
     public int getVolume() {
@@ -34,7 +24,10 @@ public class MusicPlayer {
     }
 
     public void playMusic(){
-        System.out.println("playing: " + this.music.getSongs());
+        Random random = new Random();
+        int a = random.nextInt(musicList.size());
+        System.out.println(this.musicList.get(a).getSongs());
+        //System.out.println("playing: " + this.music.getSongs());
     }
 
     /*public void playMusic(MusicGenre genre) {

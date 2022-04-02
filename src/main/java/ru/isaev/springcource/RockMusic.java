@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Component("rockMusic")
+
 public class RockMusic implements Music{
 
     public void doMyInit(){

@@ -57,7 +57,7 @@ public class TestSpring {
 
         MusicPlayer mcPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
-        System.out.println(mcPlayer.getVolume());
+        mcPlayer.playMusic();
         context.close();
     }
 }
