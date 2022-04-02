@@ -2,24 +2,42 @@ package ru.isaev.springcource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Component
+@Component("musicPlayer")
 public class MusicPlayer {
-    private ClassicalMusic classicalMusic;
-    private RockMusic rockMusic;
+    private Music music;
+    private int volume;
+
+    private String name;
 
     @Autowired
-    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
+    public MusicPlayer(@Qualifier("rockMusic") Music music,
+                       @Value("${musicPlayer.volume}") int volume,
+                       @Value("${musicPlayer.name}") String name) {
+        this.music = music;
+        this.volume = volume;
+        this.name = name;
     }
 
-    public void playMusic(MusicGenre genre) {
+    public int getVolume() {
+        return volume;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void playMusic(){
+        System.out.println("playing: " + this.music.getSongs());
+    }
+
+    /*public void playMusic(MusicGenre genre) {
         Random random = new Random();
 
         // случайное целое число между 0 и 2
@@ -32,5 +50,5 @@ public class MusicPlayer {
             // случайная рок песня
             System.out.println(rockMusic.getSongs().get(randomNumber));
         }
-    }
+    }*/
 }

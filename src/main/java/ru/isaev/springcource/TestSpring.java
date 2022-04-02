@@ -1,11 +1,16 @@
 package ru.isaev.springcource;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+        /*ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
+        );*/
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
         );
 
         //Music music = context.getBean("musicBean", Music.class);
@@ -42,12 +47,17 @@ public class TestSpring {
         Computer computer = context.getBean("computer", Computer.class);
         System.out.println(computer);*/
 
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        /*MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
         musicPlayer.playMusic(MusicGenre.CLASSICAL);
         musicPlayer.playMusic(MusicGenre.ROCK);
 
 
+        context.close();*/
+
+        MusicPlayer mcPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+
+        System.out.println(mcPlayer.getVolume());
         context.close();
     }
 }
