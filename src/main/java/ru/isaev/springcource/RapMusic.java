@@ -2,7 +2,7 @@ package ru.isaev.springcource;
 
 public class RapMusic implements Music{
     @Override
-    public String getSong() {
+    public ClassicalMusic[] getSong() {
         return "Monster";
     }
 }
